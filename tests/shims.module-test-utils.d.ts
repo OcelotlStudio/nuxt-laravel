@@ -1,16 +1,16 @@
 declare module '@nuxtjs/module-test-utils' {
-  import { Configuration } from '@nuxt/types'
+  import { NuxtConfig } from '@nuxt/types'
   import { Options } from 'request-promise'
 
   export type BeforeNuxtReadyFn = (nuxt: any /*TBD*/) => Promise<void>
 
   export const init: (
-    config: Configuration,
+    config: NuxtConfig,
     options?: { beforeNuxtReady?: BeforeNuxtReadyFn }
   ) => Promise<any /*TBD*/>
 
   export const build: (
-    config: Configuration,
+    config: NuxtConfig,
     options?: {
       waitFor?: number
       beforeNuxtReady?: BeforeNuxtReadyFn
@@ -18,7 +18,7 @@ declare module '@nuxtjs/module-test-utils' {
   ) => Promise<{ nuxt: any /*TBD*/; builder: any /*TBD*/ }>
 
   export const generate: (
-    config: Configuration,
+    config: NuxtConfig,
     options?: { build?: boolean; init?: boolean },
     initOptions?: { beforeNuxtReady?: BeforeNuxtReadyFn }
   ) => Promise<{
@@ -30,12 +30,12 @@ declare module '@nuxtjs/module-test-utils' {
   export const loadConfig: (
     dir: string,
     fixture?: string | null,
-    override?: Configuration,
+    override?: NuxtConfig,
     options?: { merge?: boolean }
-  ) => Configuration
+  ) => NuxtConfig
 
   export const setup: (
-    config: Configuration,
+    config: NuxtConfig,
     options?: {
       port?: number
       waitFor?: number

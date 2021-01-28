@@ -1,5 +1,5 @@
 import path from 'path'
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 
 import defaults, { swCacheDefaults } from '../../src/defaults'
 import { moduleKey } from '../../src/constants'
@@ -10,8 +10,8 @@ describe('getConfiguration() method', () => {
     const testHost = 'test'
     const config = getConfiguration({
       server: {
-        host: testHost
-      }
+        host: testHost,
+      },
     })
 
     test("routerBase is set to `'/'`", () => {
@@ -25,7 +25,7 @@ describe('getConfiguration() method', () => {
     test('nuxt property is configured correctly', () => {
       expect(config.nuxt).toMatchObject({
         routerPath: `/${moduleKey}`,
-        urlPath: `/${moduleKey}`
+        urlPath: `/${moduleKey}`,
       })
     })
 
@@ -35,8 +35,8 @@ describe('getConfiguration() method', () => {
         public: `${config.laravel.root}/public`,
         server: expect.objectContaining({
           host: testHost,
-          port: 3001
-        })
+          port: 3001,
+        }),
       })
     })
 
@@ -45,7 +45,7 @@ describe('getConfiguration() method', () => {
         src: `${config.laravel.root}/${moduleKey}`,
         dest: `${config.laravel.public}/`,
         fallback: 'spa.html',
-        additional: false
+        additional: false,
       })
     })
 
@@ -57,8 +57,8 @@ describe('getConfiguration() method', () => {
       const config = getConfiguration(
         {
           laravel: {
-            root: 'test'
-          }
+            root: 'test',
+          },
         },
         { root: 'testOverwrite' }
       )
@@ -72,15 +72,15 @@ describe('getConfiguration() method', () => {
       const testBase = '/test/'
       const config = getConfiguration({
         router: {
-          base: testBase
-        }
+          base: testBase,
+        },
       })
 
       expect(config.routerBase).toBe(testBase)
       expect(config.nuxt.urlPath).toEqual(`${testBase}${moduleKey}`)
       expect(config.output).toMatchObject({
         dest: `${config.laravel.public}${testBase}`,
-        fallback: 'index.html'
+        fallback: 'index.html',
       })
     })
 
@@ -90,23 +90,21 @@ describe('getConfiguration() method', () => {
       const config = getConfiguration({
         server: {
           host: testHost,
-          port: testPort
-        }
+          port: testPort,
+        },
       })
 
       expect(config.laravel).toMatchObject({
         server: {
           host: testHost,
-          port: testPort + 1
-        }
+          port: testPort + 1,
+        },
       })
     })
 
     describe('nuxtConfig.laravel', () => {
-      const executeWithConfig = (
-        laravel: Options,
-        additional?: Configuration
-      ) => getConfiguration({ laravel, ...additional })
+      const executeWithConfig = (laravel: Options, additional?: NuxtConfig) =>
+        getConfiguration({ laravel, ...additional })
 
       describe('root configuration', () => {
         const testRootDependentSettings = (
@@ -151,7 +149,7 @@ describe('getConfiguration() method', () => {
         test('resolves path relative to `config.root`', () => {
           const config = executeWithConfig({
             root: '/root/test',
-            publicDir: '../publicTest'
+            publicDir: '../publicTest',
           })
 
           testPublicDirDependentSettings(config, '/root/publicTest')
@@ -176,7 +174,7 @@ describe('getConfiguration() method', () => {
         test('resolves path relative to `config.root`', () => {
           const config = executeWithConfig({
             root: '/root/test',
-            outputPath: '../outputTest.html'
+            outputPath: '../outputTest.html',
           })
 
           expect(config.output.additional).toBe('/root/outputTest.html')
@@ -185,7 +183,7 @@ describe('getConfiguration() method', () => {
         test('accepts absolute path', () => {
           const expected = '/outputTest'
           const config = executeWithConfig({
-            outputPath: expected
+            outputPath: expected,
           })
 
           expect(config.output.additional).toBe(expected)
@@ -193,7 +191,7 @@ describe('getConfiguration() method', () => {
 
         test('output defaults to .env setting', () => {
           const config = executeWithConfig({
-            root: 'tests/fixture/dotEnvOverride'
+            root: 'tests/fixture/dotEnvOverride',
           })
 
           expect(config.output.additional).toBe('/outputTestOverwritten')
@@ -217,7 +215,7 @@ describe('getConfiguration() method', () => {
 
           expect(config.laravel.server).toMatchObject({
             host: 'other',
-            port: 15
+            port: 15,
           })
         })
 
@@ -226,7 +224,7 @@ describe('getConfiguration() method', () => {
 
           expect(config.laravel.server).toMatchObject({
             host: 'test',
-            port: 11
+            port: 11,
           })
         })
 
@@ -257,7 +255,7 @@ describe('getConfiguration() method', () => {
             executeWithConfig({ swCache: { name: 'test' } }).cache
           ).toMatchObject({
             ...swCacheDefaults,
-            name: 'test'
+            name: 'test',
           })
 
           expect(
@@ -266,17 +264,17 @@ describe('getConfiguration() method', () => {
           ).toMatchObject({
             ...swCacheDefaults,
             name: 'test',
-            endpoint: '/test'
+            endpoint: '/test',
           })
 
           expect(
             executeWithConfig({
-              swCache: { name: 'test', fileName: 'test.cache.js' }
+              swCache: { name: 'test', fileName: 'test.cache.js' },
             }).cache
           ).toMatchObject({
             ...swCacheDefaults,
             name: 'test',
-            fileName: 'test.cache.js'
+            fileName: 'test.cache.js',
           })
         })
 

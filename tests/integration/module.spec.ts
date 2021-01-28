@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import { resolve } from 'path'
 import { setup, loadConfig, build, generate } from '@nuxtjs/module-test-utils'
 
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 
 import { logger } from '../../src/utils'
 import { moduleKey, laravelAppEnv, nuxtOutputEnv } from '../../src/constants'
@@ -37,7 +37,7 @@ describe('module tests', () => {
   describe('global validation', () => {
     let nuxt: any
 
-    const setNuxt = async (options?: Configuration) => {
+    const setNuxt = async (options?: NuxtConfig) => {
       nuxt = (
         await setup(
           loadConfig(resolve(__dirname, '..'), 'default', options || {})
@@ -57,7 +57,7 @@ describe('module tests', () => {
     })
 
     test('disabled with warning message for mode `universal`', async () => {
-      await setNuxt({ mode: 'universal' })
+      await setNuxt({ ssr: true })
 
       expect(warnSpy).toHaveBeenCalledWith(
         `nuxt-laravel currently only supports 'spa' mode`
@@ -92,7 +92,7 @@ describe('module tests', () => {
 
     process.env.NODE_ENV = 'development'
 
-    const setNuxt = async (options?: Configuration) => {
+    const setNuxt = async (options?: NuxtConfig) => {
       nuxt = (
         await setup(
           loadConfig(resolve(__dirname, '..'), 'default', {
@@ -310,7 +310,7 @@ describe('module tests', () => {
     process.env.NODE_ENV = 'production'
 
     const nuxtSetup = async (
-      options?: Configuration,
+      options?: NuxtConfig,
       fixture: string = 'default'
     ) => {
       laravelRoot = resolve(__dirname, `../fixture/${fixture}`)

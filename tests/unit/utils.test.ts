@@ -1,16 +1,16 @@
 import chalk from 'chalk'
 
-import { Configuration } from '@nuxt/types'
+import { NuxtConfig } from '@nuxt/types'
 
 import { addBadgeMessage, getModuleOptions } from '../../src/utils'
 
 describe('test utility functions', () => {
   describe('addBadgeMessage()', () => {
-    const options: Configuration = {
+    const options: NuxtConfig = {
       cli: {
         badgeMessages: [],
-        bannerColor: 'white'
-      }
+        bannerColor: 'white',
+      },
     }
 
     beforeEach(() => {
@@ -35,14 +35,14 @@ describe('test utility functions', () => {
   })
 
   describe('getModuleOptions()', () => {
-    const options: Configuration = {
+    const options: NuxtConfig = {
       modules: [
         'test-empty',
         [
           'test-module',
           {
-            test: 'config'
-          }
+            test: 'config',
+          },
         ],
         'test-global',
         'test-custom',
@@ -50,23 +50,23 @@ describe('test utility functions', () => {
           'test-merge',
           {
             overwrite: 'direct',
-            direct: 'config'
-          }
-        ]
+            direct: 'config',
+          },
+        ],
       ],
 
       global: {
-        global: 'config'
+        global: 'config',
       },
 
       customKey: {
-        custom: 'config'
+        custom: 'config',
       },
 
       merge: {
         overwrite: 'global',
-        global: 'config'
-      }
+        global: 'config',
+      },
     }
 
     test('returns `null` if nuxt config has no modules property', () => {
@@ -87,19 +87,19 @@ describe('test utility functions', () => {
 
     test('returns direct configuration', () => {
       expect(getModuleOptions(options, 'test-module')).toEqual({
-        test: 'config'
+        test: 'config',
       })
     })
 
     test('returns global configuration resolved automatically', () => {
       expect(getModuleOptions(options, 'test-global')).toEqual({
-        global: 'config'
+        global: 'config',
       })
     })
 
     test('returns global configuration specified manually', () => {
       expect(getModuleOptions(options, 'test-custom', 'customKey')).toEqual({
-        custom: 'config'
+        custom: 'config',
       })
     })
 
@@ -107,7 +107,7 @@ describe('test utility functions', () => {
       expect(getModuleOptions(options, 'test-merge')).toEqual({
         overwrite: 'direct',
         direct: 'config',
-        global: 'config'
+        global: 'config',
       })
     })
   })

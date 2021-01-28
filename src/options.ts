@@ -25,6 +25,7 @@ export interface Options {
         endpoint?: string
       }
   dotEnvExport?: boolean
+  envFile?: string
 }
 
 export const validateOptions = (
@@ -40,7 +41,8 @@ export const validateOptions = (
     (typeof options.swCache === 'boolean' ||
       (typeof options.swCache === 'object' &&
         typeof options.swCache.name === 'string')) &&
-    typeof options.dotEnvExport === 'boolean'
+    typeof options.dotEnvExport === 'boolean' &&
+    typeof options.envFile === 'string'
   )
 }
 
@@ -89,7 +91,9 @@ export const getConfiguration = (
     }
   })()
 
-  dotenv.config({ path: `${laravel.root}/.env` })
+  const pathEnv = `${laravel.root}/${options.envFile || '.env'}`
+
+  dotenv.config({ path: pathEnv })
   const output = (() => {
     const outputPath = options.outputPath || process.env[nuxtOutputEnv]
 

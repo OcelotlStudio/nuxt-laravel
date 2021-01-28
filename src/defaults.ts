@@ -7,6 +7,7 @@ const defaults: Options = {
   server: true,
   swCache: false,
   dotEnvExport: false,
+  envFile: '.env',
 }
 
 export const swCacheDefaults = {

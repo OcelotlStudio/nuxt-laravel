@@ -3,7 +3,7 @@ import { moduleKey, laravelAppEnv, nuxtOutputEnv } from './constants';
 import { Options } from './options';
 declare const laravelModule: Module<Options>;
 declare module '@nuxt/types' {
-    interface Configuration {
+    interface NuxtConfig {
         laravel?: Options;
     }
 }

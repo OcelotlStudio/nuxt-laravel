@@ -13,10 +13,11 @@ export interface Options {
         endpoint?: string;
     };
     dotEnvExport?: boolean;
+    envFile?: string;
 }
-export declare const validateOptions: (options: Options) => options is Required<Pick<Options, "server" | "root" | "publicDir" | "swCache" | "dotEnvExport">> & Pick<Options, "outputPath">;
+export declare const validateOptions: (options: Options) => options is Required<Pick<Options, "server" | "root" | "publicDir" | "swCache" | "dotEnvExport" | "envFile">> & Pick<Options, "outputPath">;
 export declare const getConfiguration: (nuxtOptions: NuxtConfig, overwrites?: Options | undefined) => {
-    options: Required<Pick<Options, "server" | "root" | "publicDir" | "swCache" | "dotEnvExport">> & Pick<Options, "outputPath">;
+    options: Required<Pick<Options, "server" | "root" | "publicDir" | "swCache" | "dotEnvExport" | "envFile">> & Pick<Options, "outputPath">;
     nuxt: {
         urlPath: string;
         routerPath: string;

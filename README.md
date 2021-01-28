@@ -62,11 +62,11 @@ To have code completion/type checking on the `Configuration` interface from `@nu
 
 ### Configuration
 
-Simply include `nuxt-laravel` in `modules` and set the `mode` setting to `'spa'` in your `nuxt.config.js`
+Simply include `nuxt-laravel` in `modules` and set the `ssr` setting to `false` in your `nuxt.config.js`
 
 ```js
 export default {
-  mode: 'spa',
+  ssr: false,
   modules: [
     // Include it first, so that configuration alterations are propagated to other modules
     'nuxt-laravel'
@@ -81,7 +81,7 @@ Otherwise set the path to your Laravel root folder through the configuration.
 
 ```js
 export default {
-  mode: 'spa',
+  ssr: false,
   modules: [
     'nuxt-laravel'
   ],
@@ -101,8 +101,9 @@ export default {
 | `server`       | `boolean` or `object` | Settings for the Laravel testserver                                                                                                                                           | *(see below)*   |
 | `swCache`      | `boolean` or `object` | Settings for a cache endpoint workbox extensions using `@nuxtjs/pwa`                                                                                                          | *(see below)*   |
 | `dotEnvExport` | `boolean`             | Whether the `NUXT_OUTPUT_PATH` varibale should be written to the `.env` file in the laravel root directory                                                                    | `false`         |
+| `envFile`      | `string`              | env file name to load, useful if you want use multiple ambient envs | `null`     | 
 
-The module loads the `.env` file from your laravel root, so you can set the `NUXT_OUTPUT_PATH` environment variable from there.
+The module loads the `.env` for default or `envFile` if specifics file from your laravel root, so you can set the `NUXT_OUTPUT_PATH` environment variable from there.
 
 #### The `server` setting
 
@@ -198,7 +199,7 @@ Laravel integration is accomplished through two environment variables.
    ```js
    module.exports = {
      srcDir: 'resources/nuxt',
-     mode: 'spa',
+     ssr: false,
      // ... other config
      modules: [
        'nuxt-laravel',

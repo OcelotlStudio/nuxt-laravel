@@ -1,4 +1,4 @@
-import { Module, Configuration } from '@nuxt/types'
+import { Module, NuxtConfig } from '@nuxt/types'
 import { NuxtRouteConfig } from '@nuxt/types/config/router'
 
 import fs from 'fs-extra'
@@ -19,7 +19,7 @@ const laravelModule: Module<Options> = function (overwrites) {
   /* Validation */
 
   // Fail with a warning if we are not in 'spa' mode
-  if (this.options.mode !== 'spa') {
+  if (this.options.ssr) {
     logger.warn(`nuxt-laravel currently only supports 'spa' mode`)
 
     addBadgeMessage(this.options, false)
@@ -185,7 +185,7 @@ const laravelModule: Module<Options> = function (overwrites) {
     let _serverInitialized = false
     this.nuxt.hook(
       'render:before',
-      async ({ options }: { options: Configuration }) => {
+      async ({ options }: { options: NuxtConfig }) => {
         /* istanbul ignore next */
         if (_serverInitialized) {
           return
@@ -328,7 +328,10 @@ const laravelModule: Module<Options> = function (overwrites) {
 
     // write to .env file
     if (config.options.dotEnvExport) {
-      const envPath = path.join(config.laravel.root, '.env')
+      const envPath = path.join(
+        config.laravel.root,
+        config.options.envFile || '.env'
+      )
 
       if (fs.existsSync(envPath)) {
         const indexPath = config.output.additional || defaultOutput
@@ -353,7 +356,7 @@ const laravelModule: Module<Options> = function (overwrites) {
 }
 
 declare module '@nuxt/types' {
-  interface Configuration {
+  interface NuxtConfig {
     laravel?: Options
   }
 }

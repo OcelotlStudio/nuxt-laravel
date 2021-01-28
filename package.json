@@ -1,6 +1,6 @@
 {
-  "name": "nuxt-laravel",
-  "version": "4.2.9",
+  "name": "@ocelotlstudio/nuxt-laravel",
+  "version": "4.2.10",
   "description": "Nuxt cli extension for use with laravel as backend",
   "main": "./lib/module.js",
   "types": "./types/module.d.ts",
@@ -13,14 +13,14 @@
     "build": "yarn clean && tsc -p tsconfig.build.json && yarn assets",
     "lint": "eslint --ext .ts --ignore-path .gitignore ./src",
     "lint:fix": "npm run lint -- --fix",
-    "lint:check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
+    "lint:check": "eslint --print-config .eslintrc.json",
     "test": "jest",
     "validate": "yarn lint:check && yarn lint",
     "release": "yarn test && jest-badges-readme && yarn build && git add lib types 'README.md' && standard-version -a"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/m2sd/nuxt-laravel.git"
+    "url": "git+https://github.com/OcelotlStudio/nuxt-laravel.git"
   },
   "keywords": [
     "laravel",
@@ -31,11 +31,14 @@
     "pwa"
   ],
   "author": "Michael Marcenich <info@m-squared-solutions.it> (https://m-squared-solutions.it)",
+  "contributors": [
+    "OcelotlStudio <contacto@ocelotlstudio.com> (https://ocelotlstudio.com)"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/m2sd/nuxt-laravel/issues"
+    "url": "https://github.com/OcelotlStudio/nuxt-laravel/issues"
   },
-  "homepage": "https://github.com/m2sd/nuxt-laravel#readme",
+  "homepage": "https://github.com/OcelotlStudio/nuxt-laravel#readme",
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
@@ -45,7 +48,6 @@
     "@nuxtjs/proxy": "^2.0.1",
     "@nuxtjs/pwa": "^3.0.2",
     "@olavoparno/jest-badges-readme": "^1.5.1",
-    "@types/dotenv": "^8.2.0",
     "@types/fs-extra": "^9.0.1",
     "@types/jest": "^26.0.13",
     "@types/lodash": "^4.14.161",
@@ -56,7 +58,7 @@
     "cpr": "^3.0.1",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.9.0",
-    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
@@ -74,7 +76,7 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "execa": "^4.0.3",
+    "execa": "^5.0.0",
     "fs-extra": "^9.0.1",
     "lodash": "^4.17.20"
   },
