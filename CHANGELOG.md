@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+
+### [4.2.10](https://github.com/m2sd/nuxt-laravel/compare/v4.2.9...v4.2.10) (2021-01-28)
+
+### Features
+
+* add use of multiples `.env` files ([9535919](https://github.com/OcelotlStudio/nuxt-laravel/commit/9535919544b42430e441260c95eccdccb41e8749))
+
+
+### Bug Fixes
+
+* **proxy:** adjust loading route to include sub pages ([7fb9576](https://github.com/m2sd/nuxt-laravel/commit/7fb95763788e2e8de35b9639bf0135f03b4054e6))
+
 ### [4.2.9](https://github.com/m2sd/nuxt-laravel/compare/v4.2.8...v4.2.9) (2020-09-13)
 
 
