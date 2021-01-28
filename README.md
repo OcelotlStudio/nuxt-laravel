@@ -14,6 +14,8 @@ Looking for the old CLI extension? [nuxt-laravel](https://github.com/m2sd/nuxt-l
 This module makes it easy to integrate a [NuxtJS](https://nuxtjs.org) SPA into a [Laravel](https://laravel.com) application.  
 The implementation is based on [laravel-nuxt-js](https://github.com/skyrpex/laravel-nuxt-js) by [skyrpex](https://github.com/skyrpex).
 
+This fork updates dependencies and enables option for compiling in multiples enviroments through ```.env``` files.
+
 There is a companion extension also based on [skyrpex](https://github.com/skyrpex)'s work, which makes it very easy to set up nuxt inside an existing laravel project: [m2s/laravel-nuxt](https://github.com/m2sd/laravel-nuxt)
 
 > *Hint*: Use the companion extension for routing integration with laravel.
@@ -34,13 +36,13 @@ There is a companion extension also based on [skyrpex](https://github.com/skyrpe
 Install this package and its peer dependencies.
 
 ```bash
-npm install --save-dev @nuxtjs/axios @nuxtjs/proxy nuxt-laravel
+npm install --save-dev @nuxtjs/axios @nuxtjs/proxy @ocelotlstudio/nuxt-laravel
 ```
 
 or
 
 ```bash
-yarn add --dev @nuxtjs/axios @nuxtjs/proxy nuxt-laravel
+yarn add --dev @nuxtjs/axios @nuxtjs/proxy @ocelotlstudio/nuxt-laravel
 ```
 
 #### Typescript
@@ -101,9 +103,9 @@ export default {
 | `server`       | `boolean` or `object` | Settings for the Laravel testserver                                                                                                                                           | *(see below)*   |
 | `swCache`      | `boolean` or `object` | Settings for a cache endpoint workbox extensions using `@nuxtjs/pwa`                                                                                                          | *(see below)*   |
 | `dotEnvExport` | `boolean`             | Whether the `NUXT_OUTPUT_PATH` varibale should be written to the `.env` file in the laravel root directory                                                                    | `false`         |
-| `envFile`      | `string`              | env file name to load, useful if you want use multiple ambient envs | `null`     | 
+| `envFile`      | `string`              | `.env` file name, useful if you want to use multiple enviroment settings | `null`     | 
 
-The module loads the `.env` for default or `envFile` if specifics file from your laravel root, so you can set the `NUXT_OUTPUT_PATH` environment variable from there.
+The module loads the default `.env`  or `envFile` specified from your laravel root, so you can set the `NUXT_OUTPUT_PATH` environment variable from there.
 
 #### The `server` setting
 
@@ -191,7 +193,7 @@ Laravel integration is accomplished through two environment variables.
 4. Install the module and it's peer dependencies
 
    ```bash
-   npm i -D nuxt-laravel@next @nuxtjs/axios @nuxtjs/proxy
+   npm i -D @ocelotlstudio/nuxt-laravel @nuxtjs/axios @nuxtjs/proxy
    ```
 
 5. Update `nuxt.config.js`
