@@ -1,6 +1,6 @@
 {
   "name": "@ocelotlstudio/nuxt-laravel",
-  "version": "4.2.10",
+  "version": "4.2.11",
   "description": "Nuxt cli extension for use with laravel as backend",
   "main": "./lib/module.js",
   "types": "./types/module.d.ts",
