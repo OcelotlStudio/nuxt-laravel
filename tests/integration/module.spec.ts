@@ -478,7 +478,33 @@ describe('module tests', () => {
             resolve(__dirname, '../fixture/dotEnvOverride/.env'),
             `${nuxtOutputEnv}=/outputTestOverwritten`
           )
+          fs.writeFileSync(
+            resolve(__dirname, '../fixture/dotEnvExport/.env.production'),
+            ''
+          )
         })
+
+        test(' use custom .env file name', async () => {
+          await nuxtSetup(
+            { laravel: { envFile: '.env.production', dotEnvExport: true } },
+            'dotEnvExport'
+          )
+          const expectedRegEx = new RegExp(
+            `${nuxtOutputEnv}=${laravelRoot}/public/spa.html`,
+            'g'
+          )
+          const dotEnvContent = fs
+            .readFileSync(`${laravelRoot}/.env.production`)
+            .toString()
+
+          expect(dotEnvContent).toMatch(expectedRegEx)
+
+          const matches = dotEnvContent.match(expectedRegEx)
+          expect(matches).toBeTruthy()
+          expect(matches!.length).toBe(1)
+
+          delete process.env[nuxtOutputEnv]
+        }, 60000)
 
         test(`appends output if '${nuxtOutputEnv}' is missing`, async () => {
           await nuxtSetup({ laravel: { dotEnvExport: true } }, 'dotEnvExport')
@@ -497,7 +523,6 @@ describe('module tests', () => {
           const matches = dotEnvContent.match(expectedRegEx)
           expect(matches).toBeTruthy()
           expect(matches!.length).toBe(1)
-
           delete process.env[nuxtOutputEnv]
         }, 60000)
 
@@ -551,9 +576,8 @@ describe('module tests', () => {
 
         test('fails silently with missing .env file', async () => {
           await nuxtSetup({ laravel: { dotEnvExport: true } })
-
           expect(fs.existsSync(`${laravelRoot}/.env`)).toBe(false)
-        })
+        }, 6000)
       })
     })
 

@@ -91,7 +91,7 @@ export const getConfiguration = (
     }
   })()
 
-  const pathEnv = `${laravel.root}/${options.envFile || '.env'}`
+  const pathEnv = `${laravel.root}/${options.envFile}`
 
   dotenv.config({ path: pathEnv })
   const output = (() => {

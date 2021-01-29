@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
 
-### [4.2.10](https://github.com/m2sd/nuxt-laravel/compare/v4.2.9...v4.2.10) (2021-01-28)
+### [4.2.10](https://github.com/OcelotlStudio/nuxt-laravel/compare/v4.2.9...v4.2.10) (2021-01-28)
 
 ### Features
 
