@@ -1,7 +1,7 @@
 # Nuxt Laravel
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](https://commitizen.github.io/cz-cli/)
-[![npm](https://img.shields.io/npm/v/nuxt-laravel)](https://www.npmjs.com/package/nuxt-laravel)
+[![npm](https://img.shields.io/npm/v/@ocelotlstudio/nuxt-laravel)](https://www.npmjs.com/package/nuxt-laravel)
 
 **Jest coverage:**
 
@@ -56,7 +56,7 @@ To have code completion/type checking on the `Configuration` interface from `@nu
     "types": [
         "@nuxt/types",
         // ...
-        "nuxt-laravel"
+        "@ocelotlstudio/nuxt-laravel"
     ]
   }
 }
@@ -71,7 +71,7 @@ export default {
   ssr: false,
   modules: [
     // Include it first, so that configuration alterations are propagated to other modules
-    'nuxt-laravel'
+    '@ocelotlstudio/nuxt-laravel'
     // ... other modules
   ]
 }
@@ -85,7 +85,7 @@ Otherwise set the path to your Laravel root folder through the configuration.
 export default {
   ssr: false,
   modules: [
-    'nuxt-laravel'
+    '@ocelotlstudio/nuxt-laravel'
   ],
   laravel: {
     root: './path/to/laravel'
@@ -204,7 +204,7 @@ Laravel integration is accomplished through two environment variables.
      ssr: false,
      // ... other config
      modules: [
-       'nuxt-laravel',
+       '@ocelotlstudio/nuxt-laravel',
        // ... other modules
      ]
    }
